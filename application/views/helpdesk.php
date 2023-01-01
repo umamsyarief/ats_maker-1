@@ -1,3 +1,19 @@
+<?php
+	if(!isset($_SESSION['login'])){
+		redirect('Autentikasi/login');
+	} else if($_SESSION['login'] == false){
+		redirect('Autentikasi/login');
+	}
+	if(!isset($_SESSION['login'])){
+		$login = "Login";
+	} else{
+		if($_SESSION['username'] == true){
+			$login = $_SESSION['username'];
+		} else{
+			$login = "Login";
+		}
+	}
+?>
 <html lang="en">
 <head>
         <meta charset="utf-8">
@@ -28,7 +44,7 @@
                         <a class="nav-link p-2" aria-current="page" href="<?php echo site_url()?>/home">Home</a>
                         <a class="nav-link p-2" href="<?php echo site_url()?>/ats">ATS Maker</a>
 						<a class="nav-link p-2 active" href="<?php echo site_url()?>/helpdesk">Helpdesk</a>
-                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/login'">Login</button>
+                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/Home/logout'"><?= $login?></button>
                     </div>
                 </div>
             </div>

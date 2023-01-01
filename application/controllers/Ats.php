@@ -6,6 +6,7 @@ class Ats extends CI_Controller{
 		$this->load->model('bantuan');
 	}
 	public function index(){
+		$this->session;
 		$this->load->helper('url');
 		$this->load->view('Ats');
 	}

@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link p-2" aria-current="page" href="<?php echo site_url()?>/home">Home</a>
                         <a class="nav-link p-2 active" href="<?php echo site_url()?>/ats">ATS Maker</a>
 						<a class="nav-link p-2" href="<?php echo site_url()?>/helpdesk">Helpdesk</a>
-                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/login'"><?= $login?></button>
+                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/Home/logout'"><?= $login?></button>
                     </div>
                 </div>
             </div>

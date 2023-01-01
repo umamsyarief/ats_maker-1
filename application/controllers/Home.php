@@ -22,10 +22,14 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->session;
 		$this->load->helper('url');
+		//kalender
+		$this->load->helper('form');
 		$data = array(
-			'show_next_prev' => TRUE,
-			'next_prev_url' => 'http://localhost/ats_maker/index.php/home'
+            'start_day' =>  'sunday',
+            'show_next_prev' => TRUE,
+            'next_prev_url' => base_url()."index.php/Home/index"
 		);
 		$this->load->library('calendar', $data);
 		$tahun = $this->uri->segment(3);
@@ -33,5 +37,39 @@ class Home extends CI_Controller {
 		$data['kalender'] = $this->calendar->generate($tahun, $bulan);
 		//load homepage
 		$this->load->view('home', $data);
+	}
+
+	public function send_mail() {
+        $to_email = $this->input->post('email');
+
+        $config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'muh.syarifulumam@gmail.com',  // Email gmail
+            'smtp_pass'   => 'mbpfgrpcgqfzpgvo',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => '465',
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+
+        //Load email library 
+        $this->load->library('email', $config);
+
+        $this->email->from('muh.syarifulumam@gmail.com', 'Your Name');
+        $this->email->to($to_email);
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.');
+
+        //Send mail 
+        if ($this->email->send())
+            $this->session->set_flashdata("email_sent", "Email sent successfully.");
+        else
+            $this->session->set_flashdata("email_sent", "Error in sending Email.");
+    }
+	public function logout(){
+		$this->load->view('logout');
 	}
 }

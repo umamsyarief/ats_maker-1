@@ -1,5 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if(!isset($_SESSION['login'])){
+	$login = "Login";
+} else{
+	if($_SESSION['username'] == true){
+		$login = $_SESSION['username'];
+	} else{
+		$login = "Login";
+	}
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link active p-2" aria-current="page" href="<?php echo site_url()?>/home">Home</a>
                         <a class="nav-link p-2" href="<?php echo site_url()?>/ats">ATS Maker</a>
 						<a class="nav-link p-2" href="<?php echo site_url()?>/helpdesk">Helpdesk</a>
-                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/Autentikasi/login'">Login</button>
+                        <button class="btn btn-outline-light my-2 my-sm-0 buttonNavbar" onclick="location.href='<?php echo site_url()?>/Home/logout'"><?= $login;?></button>
                     </div>
                 </div>
             </div>
@@ -143,8 +152,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<br>
 							<h6 class="text-uppercase fw-bold mb-2">Email Newsletter</h6>
 							<div class="input-group mb-4">
-								<input type="text" class="form-control" placeholder="Email">
-								<button class="btn" style="background-color:blueviolet; color: white;">Send</button>
+								<?php
+                                    echo $this->session->flashdata('email_sent');
+                                    echo form_open('/Home/send_mail');
+                                ?> 
+								<input type="text" name ="email" class="form-control" placeholder="Email">
+								<button class="btn mt-3" style="background-color:blueviolet; color: white;">Send</button>
+								<?php
+                                    echo form_close();
+                                ?> 
 							</div>
 						</div>
                     </div>

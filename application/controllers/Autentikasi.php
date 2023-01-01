@@ -6,6 +6,7 @@ class Autentikasi extends CI_Controller{
 		$this->load->model('bantuan');
 	}
 	public function index(){
+		$this->session;
 		$this->load->helper('url');
 		$this->load->view('register');
 	}
@@ -28,7 +29,7 @@ class Autentikasi extends CI_Controller{
 			} else{
 				$_SESSION['admin'] == false;
 			}
-			redirect('Ats');
+			redirect('home');
 		} else{
 			$data['error'] = true;
 			$this->load->view('login');

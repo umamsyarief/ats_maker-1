@@ -1,3 +1,14 @@
+<?php
+	if(!isset($_SESSION['login'])){
+		$login = "Login";
+	} else{
+		if($_SESSION['username'] == true){
+			$login = $_SESSION['username'];
+		} else{
+			$login = "Login";
+		}
+	}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,9 +57,8 @@
                                             <button class="btn btn-dark btn-lg btn-block" name="submit">Login</button>
                                             <!-- <button class="btn btn-dark btn-lg btn-block" type="button">Masuk</button> -->
                                         </div>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Tidak punya akun? <a href="<?= site_url()?>/Autentikasi/register" style="color: #393f81;">Register disini</a></p>
                                         </form>
-
+										<p class="mb-5 pb-lg-2" style="color: #393f81;">Tidak punya akun? <a href="<?= site_url()?>/Autentikasi" style="color: #393f81;">Register disini</a></p>
                                     </div>
                                 </div>
                             </div>

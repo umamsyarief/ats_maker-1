@@ -9,6 +9,7 @@ class Helpdesk extends CI_Controller{
 	}
 	public function index($tahun = NULL, $bulan = NULL)
 	{
+		$this->session;
 		$this->load->helper('url');
 		$this->load->library('calendar');
 		$data['kalender'] = $this->calendar->generate($tahun, $bulan);
